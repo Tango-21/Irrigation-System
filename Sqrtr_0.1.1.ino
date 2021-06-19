@@ -26,9 +26,6 @@ void loop() {
   //'reading' is defined as the analogue (0-1023) value from the Sensor
 
   percentage = map(reading, 1023, 0, 0, 100);
-  
-  Serial.print("Moisture level: "); Serial.print(percentage); Serial.println("%");
-  //Print "Moisture level: XX %" to the serial monitor.
 
   memory[memoryIndex] = percentage;
   //The 'percentage' value is saved to the 'memoryIndex' position. This starts at 0.
@@ -41,6 +38,9 @@ void loop() {
     memoryIndex = 0;
   }
   //Loops 'memoryIndex' back to 0 to overwrite the oldest readings.
+  
+  Serial.print("Moisture level: "); Serial.print(percentage); Serial.println("%");
+  //Print "Moisture level: XX %" to the serial monitor. 
   
   delay(5000);
 
