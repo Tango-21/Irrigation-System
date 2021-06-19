@@ -1,6 +1,9 @@
 int sensorPin = A0;
 int reading;
 int percentage;
+int memory[10];
+int memoryIndex = 0;
+
 
 void setup() {
 
@@ -8,10 +11,9 @@ void setup() {
   //Establishes communications with the computer. Bitrate of 9600
 
   pinMode(13, OUTPUT);
-  //The LED will light up when the sketch is running.
-
   digitalWrite(13, HIGH);
-
+  //The LED will light up when the sketch is running.
+  
   Serial.print("Reading from the sensor...");
 
   delay(1500)
@@ -25,9 +27,21 @@ void loop() {
 
   percentage = map(reading, 1023, 0, 0, 100);
   
-  Serial.println("Moisture level:"); Serial.println(percentage); Serial.println("%");
+  Serial.print("Moisture level: "); Serial.print(percentage); Serial.println("%");
   //Print "Moisture level: XX %" to the serial monitor.
 
+  memory[memoryIndex] = percentage;
+  //The 'percentage' value is saved to the 'memoryIndex' position. This starts at 0.
+  
+  memoryIndex++;
+  //+1 to the 'memoryIndex' value. This puts the next reading in the next memory position.
+  
+  if (memoryIndex = 10);
+  {
+    memoryIndex = 0;
+  }
+  //Loops 'memoryIndex' back to 0 to overwrite the oldest readings.
+  
   delay(5000);
 
   ;
