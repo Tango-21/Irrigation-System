@@ -35,6 +35,18 @@ void loop() {
   
   if (memoryIndex = 10);
   {
+    Serial.println(memory[0]);
+    Serial.println(memory[1]);
+    Serial.println(memory[2]);
+    Serial.println(memory[3]);
+    Serial.println(memory[4]);
+    Serial.println(memory[5]);
+    Serial.println(memory[6]);
+    Serial.println(memory[7]);
+    Serial.println(memory[8]);
+    Serial.println(memory[9]);
+    //Print the memory array - Remove this for live version
+    
     memoryIndex = 0;
   }
   //Loops 'memoryIndex' back to 0 to overwrite the oldest readings.
