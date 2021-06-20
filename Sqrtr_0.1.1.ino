@@ -60,6 +60,6 @@ memoryIndex++;
   //+1 to the 'memoryIndex' value. This puts the next reading in the next memory position.
   
   delay(5000);
-  //Eventually, this should be increased to around 
+  //Eventually, this should be increased to at least 5 minutes (300000)
   ;
 }
