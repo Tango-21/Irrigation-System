@@ -1,11 +1,24 @@
 int sensorPin = A0;
-int reading;
-int percentage;
+int moistureReading;
+int moistureRating;
+  // The reading from the Moisture Detector expressed as a percentage.
 int memory[10];
 int memoryIndex = 0;
 int squirtScore = 0;
+  //The Squirt Score is determined by how many of the last 10 Moisture Ratings has a +1 to Squirt Score.
+
+
+//CONFIG SETTINGS
 int squirtThreshold = 5;
-int percentageThreshold = 50;
+  //The number of cycles out of the last 10 to activate a Squirt.
+int moistureThreshold = 40;
+  //The value below which a Moisture Reading causes a +1 to Squirt Score.
+int cycleTime = 2000 ;
+  //Time in miliseconds.
+  //The delay between begining cycles. This can be used to control the total length of time between readings & thus minimum time between Squirts.
+int squirtTime = 5000  
+  //Time in miliseconds.
+  //The length of a Squirt.
 
 void setup() {
 
@@ -25,94 +38,105 @@ void setup() {
 
 void loop() {
 
-  reading = analogRead(sensorPin);
+//SENSOR READING & STORAGE
+  moistureReading = analogRead(sensorPin);
   //'reading' is defined as the analogue (0-1023) value from the Sensor
-
-  percentage = map(reading, 1023, 0, 0, 100);
-
-  if(memoryIndex > 9)
-  {
-  Serial.println(memory[0]);
-  Serial.println(memory[1]);
-  Serial.println(memory[2]);
-  Serial.println(memory[3]);
-  Serial.println(memory[4]);
-  Serial.println(memory[5]);
-  Serial.println(memory[6]);
-  Serial.println(memory[7]);
-  Serial.println(memory[8]);
-  Serial.println(memory[9]);
-   //Print the memory array - Remove this for live version
+  moistureRating = map(moistureReading, 1023, 0, 0, 100);
   
-  memoryIndex = 0;
-  }
-  //Loops 'memoryIndex' back to 0 to overwrite the oldest readings.
-
-   memory[memoryIndex] = percentage;
-  //The 'percentage' value is saved to the 'memoryIndex' position. This starts at 0.
+  memory[memoryIndex] = moistureRating;
+  //The 'moistureRating' value is saved to the 'memoryIndex' position. This starts at 0.
 
 
-  Serial.print("Memory position: "); Serial.println(1+memoryIndex); 
+//SQUIRT SCORING
+  if(memory[0] > moistureThreshold)
+  {
+ squirtScore++;
+ }
+  if(memory[1] > moistureThreshold)
+{
+ squirtScore++;
+ }
+  if(memory[2] > moistureThreshold)
+{
+ squirtScore++;
+ }
+  if(memory[3] > moistureThreshold)
+{
+ squirtScore++;
+ }
+  if(memory[4] > moistureThreshold)
+{
+ squirtScore++;
+ }
+  if(memory[5] > moistureThreshold)
+{
+ squirtScore++;
+ }
+  if(memory[6] > moistureThreshold)
+{
+ squirtScore++;
+ }
+  if(memory[7] > moistureThreshold)
+{
+ squirtScore++;
+ }
+  if(memory[8] > moistureThreshold)
+{
+ squirtScore++;
+ }
+  if(memory[9] > moistureThreshold)
+{
+ squirtScore++;
+  } ;
 
-  Serial.print("Moisture level: "); Serial.print(percentage); Serial.println("%");
+//OUTPUTS - Serial Monitor
+ 
+ Serial.println("============");
+ Serial.print("Memory position: "); Serial.println(1+memoryIndex); 
+    //Probably hide this later.
+ Serial.print("Moisture Rating: "); Serial.print(moistureRating); Serial.println("%");
   //Print: "Moisture level: XX %" to the serial monitor. 
+ Serial.print("Squirt Score: "); Serial.print(squirtScore); Serial.print("/ 10 (Threshold: "); Serial.print(squirtScore); Serial.println(")");
+ Serial.println("");
 
-  Serial.println("-");
+if (memoryIndex == 9) {   
+  Serial.println("The last 10 Moisture Ratings:");
+  Serial.print(memory[0]); Serial.println("%");
+  Serial.print(memory[1]); Serial.println("%");
+  Serial.print(memory[2]); Serial.println("%");
+  Serial.print(memory[3]); Serial.println("%");
+  Serial.print(memory[4]); Serial.println("%");
+  Serial.print(memory[5]); Serial.println("%");
+  Serial.print(memory[6]); Serial.println("%");
+  Serial.print(memory[7]); Serial.println("%");
+  Serial.print(memory[8]); Serial.println("%");
+  Serial.print(memory[9]); Serial.println("%");
+}
 
-memoryIndex++;
+
+//OUTPUTS - Squirt mode
+//Code to follow. LED initially, pump eventually
+//if(squirtScore >= scquirtThreshold) {
+//digitalWrite(PIN, HIGH);
+//delay(squirtTime);
+//digitalWrite(PIN, LOW);
+//  }
+
+
+//CYCLE & RESET memoryIndex
+ memoryIndex++;
   //+1 to the 'memoryIndex' value. This puts the next reading in the next memory position.
 
-  
-//Below uses the previous 10 readings to determine the squirt score.  
-int squirtScore = 0;
-int squirtThreshold = 5;
-  
-  if(memory[0] > percentageThreshold)
-{
-  {
- squirtScore++;
- }
-  if(memory[1] > percentageThreshold)
-{
- squirtScore++;
- }
-  if(memory[2] > percentageThreshold)
-{
- squirtScore++;
- }
-  if(memory[3] > percentageThreshold)
-{
- squirtScore++;
- }
-  if(memory[4] > percentageThreshold)
-{
- squirtScore++;
- }
-  if(memory[5] > percentageThreshold)
-{
- squirtScore++;
- }
-  if(memory[6] > percentageThreshold)
-{
- squirtScore++;
- }
-  if(memory[7] > percentageThreshold)
-{
- squirtScore++;
- }
-  if(memory[8] > percentageThreshold)
-{
- squirtScore++;
- }
-  if(memory[9] > percentageThreshold)
-{
- squirtScore++;
+ if(memoryIndex > 9)
+  {  
+  memoryIndex = 0;
   }
-} ;
-
- Serial.print("Squirt Score: "); Serial.print(squirtScore); 
-  
-  delay(5000);
+  //Resets 'memoryIndex' back to 0 to overwrite the oldest readings.
+ 
+ delay(cycleTime);
   //Eventually, this should be increased to at least 5 minutes (300000)
   ;
 }
+
+
+  
