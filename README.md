@@ -15,3 +15,10 @@ Version history:
 - 0.1 - Take reading from SH, map it to a % value, print reading to Serial.
 - 0.1.1 - the 10 previous moisture readings are saved to an array. The 11th reading overwrites the first, the 12th overwrites the 2nd etc. 
 - 0.1.2 - Easily configurable settings. Displays the last 10 readings evrery 10 readings. Introduction of Squirt Scores to determine when to Squirt.
+
+
+Calibration Notes:
+Moisture level      Qualitative Notes
+
+65 - 70%            Moist, but not wet. Surface soil not yet dried.
+47 - 50%            Surface soil is dry. Slightly damp when youre knuckle deep.
