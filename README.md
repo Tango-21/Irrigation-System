@@ -7,7 +7,6 @@ Functionality so far:
 - Squirt Scores - Use previous 10 readings to determine whether or not to Squirt (trigger the pump/light up led)
 
 Roadmap:
-
 - Pump testing, using led
 - emergency squirt
 
@@ -17,7 +16,7 @@ Version history:
 - 0.1.2 - Easily configurable settings. Displays the last 10 readings evrery 10 readings. Introduction of Squirt Scores to determine when to Squirt.
 
 
-Calibration Notes:
+Calibration Notes:  
 Moisture level      Qualitative Notes
 
 - 65 - 70%            Moist, but not wet. Surface soil not yet dried.
