@@ -13,10 +13,10 @@ int squirtThreshold = 5;
   //The number of cycles out of the last 10 to activate a Squirt.
 int moistureThreshold = 40;
   //The value below which a Moisture Reading causes a +1 to Squirt Score.
-int cycleTime = 2000 ;
+int cycleTime = 7500 ;
   //Time in miliseconds.
   //The delay between begining cycles. This can be used to control the total length of time between readings & thus minimum time between Squirts.
-int squirtTime = 5000  
+int squirtTime = 5000 ;
   //Time in miliseconds.
   //The length of a Squirt.
 
@@ -96,7 +96,7 @@ void loop() {
     //Probably hide this later.
  Serial.print("Moisture Rating: "); Serial.print(moistureRating); Serial.println("%");
   //Print: "Moisture level: XX %" to the serial monitor. 
- Serial.print("Squirt Score: "); Serial.print(squirtScore); Serial.print("/ 10 (Threshold: "); Serial.print(squirtScore); Serial.println(")");
+ Serial.print("Squirt Score: "); Serial.print(squirtScore); Serial.print("/ 10 (Threshold: "); Serial.print(squirtThreshold); Serial.println(")");
  Serial.println("");
 
 if (memoryIndex == 9) {   
@@ -132,11 +132,11 @@ if (memoryIndex == 9) {
   memoryIndex = 0;
   }
   //Resets 'memoryIndex' back to 0 to overwrite the oldest readings.
+
+squirtScore = 0;
+  //Resets Squrt Score before the next cycle
  
  delay(cycleTime);
   //Eventually, this should be increased to at least 5 minutes (300000)
   ;
 }
-
-
-  
