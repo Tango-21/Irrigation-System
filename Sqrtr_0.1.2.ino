@@ -48,23 +48,23 @@ void loop() {
 
 
 //SQUIRT SCORING
-  if(memory[0] > moistureThreshold)
+  if(memory[0] < moistureThreshold)
   {
  squirtScore++;
  }
-  if(memory[1] > moistureThreshold)
+  if(memory[1] < moistureThreshold)
 {
  squirtScore++;
  }
-  if(memory[2] > moistureThreshold)
+  if(memory[2] < moistureThreshold)
 {
  squirtScore++;
  }
-  if(memory[3] > moistureThreshold)
+  if(memory[3] < moistureThreshold)
 {
  squirtScore++;
  }
-  if(memory[4] > moistureThreshold)
+  if(memory[4] < moistureThreshold)
 {
  squirtScore++;
  }
@@ -72,19 +72,19 @@ void loop() {
 {
  squirtScore++;
  }
-  if(memory[6] > moistureThreshold)
+  if(memory[6] < moistureThreshold)
 {
  squirtScore++;
  }
-  if(memory[7] > moistureThreshold)
+  if(memory[7] < moistureThreshold)
 {
  squirtScore++;
  }
-  if(memory[8] > moistureThreshold)
+  if(memory[8] < moistureThreshold)
 {
  squirtScore++;
  }
-  if(memory[9] > moistureThreshold)
+  if(memory[9] < moistureThreshold)
 {
  squirtScore++;
   } ;
