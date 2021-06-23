@@ -19,5 +19,7 @@ Version history:
 Calibration Notes:  
 Moisture level      Qualitative Notes
 
-- 65 - 70%            Moist, but not wet. Surface soil not yet dried.
-- 47 - 50%            Surface soil is dry. Slightly damp when youre knuckle deep.
+- 65 - 70%            Moist, but not wet. Surface soil not yet dried. (R)
+- 60 - 65%            Slightly moist. Not overly dry.
+- 47 - 50%            Surface soil is dry. Slightly damp when youre knuckle deep. (L)
+
